@@ -6,8 +6,8 @@ import { authMiddleware } from "@clerk/nextjs";
 
 // make tcpr routes public
 export default authMiddleware({
-  publicRoutes: ["/"],
-  ignoredRoutes: ["/api/trpc/posts.getAll"],
+  publicRoutes: ["/", "/api/trpc/posts.getAll"],
+  // ignoredRoutes: ["/api/trpc/posts.getAll"],
 });
 
 export const config = {
