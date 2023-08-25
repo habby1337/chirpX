@@ -10,7 +10,9 @@ export default authMiddleware({
     "/",
     "/api/trpc/posts.getAll",
     "/@:username",
+    "/post/:id",
     "/api/trpc/posts.getPostsByUserId,profile.getUserByUsername",
+    "/api/trpc/posts.getById",
   ],
   // ignoredRoutes: ["/api/trpc/posts.getAll"],
 });
