@@ -53,23 +53,15 @@ const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   );
 };
 
-import { createServerSideHelpers } from "@trpc/react-query/server";
-
-import SuperJSON from "superjson";
-import { appRouter } from "~/server/api/root";
-
 import { type NextPage, type GetStaticProps } from "next";
-import { prisma } from "~/server/db";
+
 import { PageLayout } from "~/components/layout";
 import { LoadingSpinner } from "~/components/loading";
 import { PostView } from "~/components/postView";
+import { generateSSGHelper } from "~/server/helpers/ssgHelper";
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const ssg = createServerSideHelpers({
-    router: appRouter,
-    ctx: { prisma, userId: null },
-    transformer: SuperJSON,
-  });
+  const ssg = generateSSGHelper();
 
   const slug = context.params?.slug;
 
