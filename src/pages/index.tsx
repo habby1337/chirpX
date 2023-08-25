@@ -96,10 +96,24 @@ export default function Home() {
   return (
     <>
       <PageLayout>
+        <div className="border-b-1 flex justify-center border-slate-800 p-2">
+          {!isSignedIn && (
+            <SignInButton>
+              <button className="rounded-md border-2 border-slate-500 bg-slate-800 p-2 text-white">
+                Sign in
+              </button>
+            </SignInButton>
+          )}
+          {!!isSignedIn && (
+            <SignOutButton>
+              <button className="rounded-md border-2 border-slate-500 bg-slate-800 p-2 text-white">
+                Sign out
+              </button>
+            </SignOutButton>
+          )}
+        </div>
         <div className="flex border-b border-slate-400 p-4">
           {isSignedIn && <CreatePostWizard />}
-          {!isSignedIn && <SignInButton>Sign in</SignInButton>}
-          {!!isSignedIn && <SignOutButton>Sign out</SignOutButton>}
         </div>
         <Feed />
       </PageLayout>
