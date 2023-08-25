@@ -1,4 +1,4 @@
-import { SignInButton, useUser } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { type RouterOutputs, api } from "~/utils/api";
 
 import Image from "next/image";
@@ -99,7 +99,7 @@ export default function Home() {
         <div className="flex border-b border-slate-400 p-4">
           {isSignedIn && <CreatePostWizard />}
           {!isSignedIn && <SignInButton>Sign in</SignInButton>}
-          {/* {!!user.isSignedIn && <SignOutButton>Sign out</SignOutButton>} */}
+          {!!isSignedIn && <SignOutButton>Sign out</SignOutButton>}
         </div>
         <Feed />
       </PageLayout>
