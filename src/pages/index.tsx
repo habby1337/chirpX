@@ -93,6 +93,22 @@ export default function Home() {
 
   if (!userLoaded) return <div />;
 
+  const firstMessage = localStorage.getItem("firstMessage") === null;
+
+  if (!isSignedIn && firstMessage) {
+    toast(
+      <div>
+        Hey, welcome to ChirpX! <br />
+        If you are a recruiter leave an emoji on the board as milestone. <br />
+      </div>,
+      {
+        icon: "👋",
+        duration: 10000,
+      }
+    );
+    localStorage.setItem("firstMessage", "false");
+  }
+
   return (
     <>
       <PageLayout>
