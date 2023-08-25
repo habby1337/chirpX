@@ -23,8 +23,8 @@ export const PostView = (props: PostWithAuthor) => {
       />
       <div className="flex flex-col">
         <div className="flex gap-1  text-slate-300">
-          <Link href={`/@${author.username}`}>
-            <span>{`@${author.username}`}</span>
+          <Link href={`/@${author.username ?? author.firstName}`}>
+            <span>{`@${author.username ?? author.firstName}`}</span>
           </Link>
           <Link href={`/post/${post.id}`}>
             <span className="font-thin">{` · ${dayjs(
