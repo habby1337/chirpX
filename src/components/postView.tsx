@@ -13,14 +13,16 @@ type PostWithAuthor = RouterOutputs["posts"]["getAll"][number];
 export const PostView = (props: PostWithAuthor) => {
   const { post, author } = props;
   return (
-    <div key={post.id} className="flex gap-3 border-b border-slate-400 p-4">
-      <Image
-        src={author.imageUrl}
-        alt="Profile image"
-        className="h-12 w-12 rounded-full"
-        width={48}
-        height={48}
-      />
+    <div key={post.id} className="flex gap-3  border-b border-slate-700 p-4">
+      <Link href={`/@${author.username ?? author.firstName}`}>
+        <Image
+          src={author.imageUrl}
+          alt="Profile image"
+          className="h-12 w-12 rounded-full"
+          width={48}
+          height={48}
+        />
+      </Link>
       <div className="flex flex-col">
         <div className="flex gap-1  text-slate-300">
           <Link href={`/@${author.username ?? author.firstName}`}>

@@ -14,10 +14,20 @@ const SinglePostPage: NextPage<{ id: string }> = ({ id }) => {
     <>
       <Head>
         <title>
-          {`@${data.post.content}`} - {`${data.author.username}`} | ChirpX
+          {`${data.post.content}`} - {`${data.author.username}`} | ChirpX
         </title>
       </Head>
       <PageLayout>
+        <div className="border-b border-slate-700 p-4 pb-6">
+          <div className=" left-4 top-4 w-24 ">
+            <Link
+              href={"/"}
+              className=" w-full rounded-md bg-slate-800  p-3 text-sm text-white hover:bg-slate-900"
+            >
+              {`<`} Home
+            </Link>
+          </div>
+        </div>
         <PostView {...data} />
       </PageLayout>
     </>
@@ -29,6 +39,7 @@ import { PageLayout } from "~/components/layout";
 import { PostView } from "~/components/postView";
 import { generateSSGHelper } from "~/server/helpers/ssgHelper";
 import { LoadingSpinner } from "~/components/loading";
+import Link from "next/link";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const ssg = generateSSGHelper();

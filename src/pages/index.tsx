@@ -1,4 +1,9 @@
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignOutButton,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 import { type RouterOutputs, api } from "~/utils/api";
 
 import Image from "next/image";
@@ -32,17 +37,12 @@ const CreatePostWizard = () => {
 
   if (!user) return null;
   return (
-    <div className="flex w-full gap-4">
-      <Image
-        src={user.imageUrl}
-        alt="Profile image"
-        className="h-12 w-12 rounded-full"
-        width={48}
-        height={48}
-      />
+    <div className="flex w-full gap-4 p-4">
+      <UserButton afterSignOutUrl={"/"} />
+
       <input
         placeholder="What's on your mind? use only emojis!"
-        className="grow bg-transparent outline-none"
+        className="grow rounded-full bg-slate-700 bg-opacity-25 p-3 pl-4 outline-none  focus:ring-slate-500 focus:ring-opacity-50"
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -112,7 +112,8 @@ export default function Home() {
   return (
     <>
       <PageLayout>
-        <div className="border-b-1 flex justify-center border-slate-800 p-2">
+        <div className="border-b-1 sticky top-0 z-30 flex items-baseline  justify-between gap-3 border-slate-700  bg-gradient-to-r from-slate-900/70 p-2 backdrop-blur-[200px] ">
+          <h1 className="text-2xl font-extrabold">ChirpX</h1>
           {!isSignedIn && (
             <SignInButton>
               <button className="rounded-md border-2 border-slate-500 bg-slate-800 p-2 text-white">
@@ -128,9 +129,10 @@ export default function Home() {
             </SignOutButton>
           )}
         </div>
-        <div className="flex border-b border-slate-400 p-4">
+        <div className="z-0 mb-2 flex border-b border-slate-500 bg-slate-900 bg-opacity-40">
           {isSignedIn && <CreatePostWizard />}
         </div>
+
         <Feed />
       </PageLayout>
     </>

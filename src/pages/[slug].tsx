@@ -35,7 +35,15 @@ const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
         <title>{`@${data.username}`} | ChirpX</title>
       </Head>
       <PageLayout>
-        <div className="relative h-36  border-slate-400 bg-slate-700">
+        <div className="relative h-36  border-slate-700 bg-slate-700">
+          <div className="absolute left-4 top-4 w-24 ">
+            <Link
+              href={"/"}
+              className=" w-full rounded-md bg-slate-800 p-3 text-sm text-white hover:bg-slate-900"
+            >
+              {`<`} Home
+            </Link>
+          </div>
           <Image
             src={data.imageUrl}
             alt={`${data.username!}'s profile picture`}
@@ -59,6 +67,7 @@ import { PageLayout } from "~/components/layout";
 import { LoadingSpinner } from "~/components/loading";
 import { PostView } from "~/components/postView";
 import { generateSSGHelper } from "~/server/helpers/ssgHelper";
+import Link from "next/link";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const ssg = generateSSGHelper();
